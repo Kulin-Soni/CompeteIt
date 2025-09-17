@@ -5,7 +5,7 @@ interface PageLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 const PageLayout: React.FC<PageLayoutProps> = ({children, className, ...rest}) => {
   return (
-    <div className={cn(`w-dvw h-dvh bg-primary`, className)} {...rest}>
+    <div className={cn(`bg-primary flex-1 min-w-0 min-h-0`, className)} {...rest}>
       {children}
     </div>
   )

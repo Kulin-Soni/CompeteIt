@@ -1,0 +1,16 @@
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/get-query-client";
+import { userSettings } from "@/queries/userSettings";
+export default async function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  const queryClient = getQueryClient();
+  void queryClient.prefetchQuery(userSettings);
+  return (
+    <div className="w-full h-full center-col overflow-hidden bg-primary relative">
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <div className="h-full w-full max-w-6xl flex">{children}</div>
+      </HydrationBoundary>
+    </div>
+  );
+}

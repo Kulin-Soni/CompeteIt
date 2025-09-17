@@ -4,31 +4,32 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --accent: 46, 255, 249;
-  --accent-disabled: 0, 163, 158;
+  --accent: 55, 251, 177;
+  --accent-disabled: 50, 225, 159;
 
   --primary: 237, 237, 237;
   --secondary: 215, 215, 215;
-  --tertiary: 200, 200, 200;
-
+  --tertiary: 180, 180, 180;
+  --danger: theme('colors.danger.400');
   --text-primary: 0, 0, 0;
-  --text-secondary: 0, 0, 0;
-
-  --static-accent: 46, 255, 249;
+  --text-secondary: 255, 255, 255;
+  
+  --static-accent: 55, 251, 177;
 }
 
 .dark {
-  --accent: 0, 209, 202;
-  --accent-disabled: 0, 163, 158;
-
+  --accent: 44, 201, 142;
+  --accent-disabled: 39, 176, 124;
+  
   --primary: 0, 20, 20;
   --secondary: 29, 46, 46;
   --tertiary: 26, 38, 38;
+  --danger: theme('colors.danger.200');
 
   --text-primary: 255, 255, 255;
-  --text-secondary: 255, 255, 255;
+  --text-secondary: 0, 0, 0;
 
-  --static-accent: 46, 255, 249;
+  --static-accent: 44, 201, 142;
 
 }
 
@@ -39,9 +40,10 @@
   --color-primary: rgba(var(--primary));
   --color-secondary: rgba(var(--secondary));
   --color-tertiary: rgba(var(--tertiary));
-
-  --color-t-primary: rgba(var(--text-primary));
-  --color-t-secondary: rgba(var(--text-secondary));
+  --color-danger: var(--danger);
+  
+  --color-text-primary: rgba(var(--text-primary));
+  --color-text-secondary: rgba(var(--text-secondary));
   
   --font-poppins: var(--font-poppins); 
 
@@ -49,8 +51,8 @@
 }
 
 .center-col {
-  @apply flex flex-col justify-center items-center
+  @apply flex flex-col justify-center items-center;
 }
 .center-row {
-  @apply flex flex-row justify-center items-center
+  @apply flex flex-row justify-center items-center;
 }
