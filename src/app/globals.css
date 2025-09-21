@@ -45,7 +45,8 @@
   --color-text-primary: rgba(var(--text-primary));
   --color-text-secondary: rgba(var(--text-secondary));
   
-  --font-poppins: var(--font-poppins); 
+  --font-poppins: var(--font-c-poppins);
+  --font-alef: var(--font-c-alef);
 
   --color-static-accent: rgba(var(--static-accent));
 }

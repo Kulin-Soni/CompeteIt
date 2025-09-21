@@ -6,7 +6,7 @@ export function HeroProvider({children}: { children: React.ReactNode }) {
     <HeroUIProvider disableRipple>
       <ToastProvider toastProps={{
         shouldShowTimeoutProgress: true,
-        classNames: { base: "font-poppins" },
+        classNames: { base: "font-poppins z-[1000]" },
       }} />
       {children}
     </HeroUIProvider>

@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@heroui/react'
 import React, { HTMLAttributes } from 'react'
 interface PageLayoutProps extends HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode,

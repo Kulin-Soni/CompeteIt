@@ -1,23 +1,28 @@
 "use client";
 import WarpIcon from "@/components/ui/WarpIcon";
 import { AnimatePresence, motion } from "motion/react";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Spinner } from "@heroui/react";
 import { addF, addS } from "@/lib/toast";
 import { useUserSettings } from "@/queries/userSettings";
 
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
 export default function ProfilePictureField() {
-  const currentUserProfile = useUserSettings();
+  const currentUser = useUserSettings();
   const inputRef = useRef<HTMLInputElement>(null);
+  const [preview, setPreview] = useState<string | null>(null);
   const [fileProcessing, setFileProcessing] = useState(false);
-  const [preview, setPreviewImage] = useState(currentUserProfile?.userProfile.avatar);
-  const handleFile = useCallback(
+  useEffect(()=>{
+    setPreview(currentUser?.userProfile.avatar);
+  }, [currentUser.userProfile.avatar]);
+
+  const onFileChange = useCallback(
     async (file: FileList) => {
       const endProcess = ()=>{setFileProcessing(false); if (inputRef.current) inputRef.current.value = ""}
       
       setFileProcessing(true);
-      if (file[0].size > 2_000_000) {
+      if (file[0].size > MAX_FILE_SIZE) {
         // 2MB is max file size.
         addF({description: "The picture should be <2MB in size."});
         return endProcess();
@@ -26,9 +31,9 @@ export default function ProfilePictureField() {
       try {
         if (preview?.startsWith("blob:")) URL.revokeObjectURL(preview);
         const objectURL = URL.createObjectURL(file[0]);
-        setPreviewImage(objectURL);
+        setPreview(objectURL);
 
-        // backend stuff here.
+        // await uploadAvatar(file[0])
 
         addS({description: "Your profile picture has been updated."});
       } catch {
@@ -39,7 +44,7 @@ export default function ProfilePictureField() {
     [preview]
   );
   return (
-    <div className="w-full center-col">
+    <div className="h-full center-col">
       <input
         type="file"
         className="w-0 h-0 invisible absolute -z-1 hidden"
@@ -49,12 +54,12 @@ export default function ProfilePictureField() {
         hidden
         accept=".jpg, .png, .jpeg"
         onChange={async (file) => {
-          if (file.target.files) await handleFile(file.target.files);
+          if (file.target.files) await onFileChange(file.target.files);
         }}
         disabled={fileProcessing || !preview}
       />
       <button
-        className="relative overflow-hidden rounded-full border-2 border-secondary/50 sm:w-60 w-1/2 aspect-square"
+        className="relative overflow-hidden rounded-full border-2 border-secondary/50 sm:w-50 w-1/2 aspect-square"
         onClick={() => {
           inputRef.current?.click();
         }}
@@ -77,7 +82,7 @@ export default function ProfilePictureField() {
             </motion.div>
           )}
         </AnimatePresence>
-        {fileProcessing && (
+        {(fileProcessing || !preview) && (
           <div className="w-full h-full bg-secondary/50 backdrop-blur-lg absolute top-0 left-0 center-col z-5 rounded-full cursor-none">
             <Spinner
               variant="simple"
@@ -86,14 +91,14 @@ export default function ProfilePictureField() {
             />
           </div>
         )}
-        <Image
+        {preview && <Image
           src={preview}
           alt="User Profile Picture"
           fill
           priority
           sizes="(max-width: 500px) 500px, 500px"
           className="rounded-full object-cover"
-        />
+        />}
       </button>
     </div>
   );

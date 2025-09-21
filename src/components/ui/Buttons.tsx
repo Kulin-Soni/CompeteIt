@@ -1,8 +1,7 @@
 // Imports
 import type { ButtonProps as BaseButtonProps } from "@heroui/react";
 import React, { ButtonHTMLAttributes } from "react";
-import { useButton } from "@heroui/react";
-import { cn } from "@/lib/utils";
+import { cn, tv, useButton } from "@heroui/react";
 
 // Button 1
 const Button = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
@@ -35,49 +34,81 @@ const Button = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
 );
 Button.displayName = "Button";
 
-// Button 2
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+const button = tv({
+  base: "px-4 py-3 font-poppins text-text-primary rounded-2xl transition-colors cursor-pointer flex gap-5 items-center",
+  variants: {
+    intent: {
+      primary: "bg-accent/80",
+      secondary: "bg-secondary",
+      danger: "bg-danger",
+      fw: "bg-transparent hover:bg-secondary flex justify-between",
+    },
+    position: {
+      centered: "justify-center",
+      left: "flex "
+    },
+  },
+  defaultVariants: {
+    intent: "secondary",
+    position: "centered"
+  },
+});
+
+const innerDiv = tv({
+  base: "center-row",
+  variants: {
+    gapSize: {
+      sm: "gap-2",
+      md: "gap-5",
+      lg: "gap-8"
+    },
+  },
+  defaultVariants: {
+    gapSize: "md"
+  }
+})
+
+interface VariantProps {
+  intent?: "primary" | "secondary" | "danger" | "fw";
+  position?: "centered" | "left";
+  gapSize?: "sm" | "md" | "lg"
 }
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps {
+  children: React.ReactNode;
+  startContent?: React.JSX.Element;
+  endContent?: React.JSX.Element;
+}
+
 const WarpButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, ...rest }, ref) => {
+  (
+    {
+      className,
+      children,
+      intent,
+      position,
+      gapSize,
+      startContent,
+      endContent,
+      ...rest
+    },
+    ref
+  ) => {
     return (
       <button
         ref={ref}
         {...rest}
-        className={cn(
-          `px-4 py-3 bg-secondary font-poppins text-text-primary rounded-2xl center-row gap-5 transition-colors cursor-pointer`,
-          className
-        )}
+        className={cn(button({ intent, position  }), className)}
       >
-        {children}
+        <div className={innerDiv({ gapSize })}>
+          {startContent && <div>{startContent}</div>}
+          {children}
+        </div>
+        {endContent}
       </button>
     );
   }
 );
+
 WarpButton.displayName = "WarpButton";
 
-// Button 3
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-}
-const Button3 = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, ...rest }, ref) => {
-    return (
-      <button
-        ref={ref}
-        {...rest}
-        className={cn(
-          `px-4 py-3 bg-danger font-poppins text-text-primary rounded-2xl center-row gap-5 transition-colors cursor-pointer`,
-          className
-        )}
-      >
-        {children}
-      </button>
-    );
-  }
-);
-Button3.displayName = "Button 2";
-
-// Exports
-export { Button, WarpButton, Button3 };
+export { Button, WarpButton };

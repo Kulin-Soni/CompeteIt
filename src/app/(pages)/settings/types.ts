@@ -1,11 +1,4 @@
-export enum DataFields {
-  Avatar = "avatar",
-  DisplayName = "displayname",
-  UserName = "username",
-  Description = "description",
-  Link = "link"
-}
-
+/* Profile */
 export type LinkType = {
     id: string,
     label: string,
@@ -14,37 +7,37 @@ export type LinkType = {
   }
 export type AvatarType = string;
 export type Name = string;
+export type Description = string;
 export interface NamesType {
     name: Name,
     canBeUpdated: boolean
 }
-export type DescriptionType = string;
-
-export interface Field {
+export interface ShowPublicType {
   id: string,
   show: boolean
-}
-export interface ShowPublicType {
-    competitions: Field,
-    events: Field,
-    giveaways: Field
+  displayName: string,
 }
 export interface UserProfile {
   avatar: AvatarType;
   displayName: NamesType,
   userName: NamesType,
-  description?: DescriptionType,
+  description?: Description,
   links: LinkType[],
-  showPublic: ShowPublicType
+  showPublic: ShowPublicType[]
 }
+/* Profile */
 
 
-export interface GeneralSettings {
-  something: true
-}
+
+/* Privacy */
+// export interface PrivacyAndSecuritySettings {}
+/* Privacy */
+
+
 
 
 export interface UserSettings {
   userProfile: UserProfile,
-  general?: GeneralSettings
+  // privacy?: PrivacyAndSecuritySettings
 }
+//

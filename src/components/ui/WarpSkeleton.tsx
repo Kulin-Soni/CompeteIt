@@ -1,6 +1,6 @@
 import React from 'react'
 import { Skeleton, SkeletonProps } from '@heroui/react'
-import { cn } from '@/lib/utils'
+import { cn } from '@heroui/react'
 
 const WarpSkeleton: React.FC<Partial<SkeletonProps>> = ({className, ...rest}) => {
   return (

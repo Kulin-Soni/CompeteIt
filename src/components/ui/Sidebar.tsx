@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import WarpIcon from "./WarpIcon";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 import { usePathname, useRouter } from "next/navigation";
 
 
@@ -229,7 +229,7 @@ const Leaf: React.FC<LeafProps> = ({ params }) => {
   return (
     <Link
       className={cn(
-        `w-full px-1.5 py-2 not-first:not-last:my-1 last:mt-1 first:mb-1 font-poppins text-text-primary/60 block text-md transition-colors duration-300 hover:bg-secondary rounded-xl leading-5 ${
+        `w-full px-1.5 py-2 not-first:not-last:my-1 last:mt-1 first:mb-1 text-text-primary/60 block text-md transition-colors duration-300 hover:bg-secondary rounded-xl leading-5 ${
           path == params.url
             ? "bg-secondary dark:text-accent text-text-primary hover:dark:text-accent hover:text-text-primary"
             : "hover:text-text-primary"
@@ -238,7 +238,7 @@ const Leaf: React.FC<LeafProps> = ({ params }) => {
       )}
       href={params.url}
     >
-      <p className="font-poppins text-md flex-1 text-left pl-4">
+      <p className="font-alef text-md flex-1 text-left pl-4">
         {params.title}
       </p>
     </Link>

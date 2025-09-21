@@ -9,7 +9,7 @@ export default async function RootLayout({
   return (
     <div className="w-full h-full center-col overflow-hidden bg-primary relative">
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <div className="h-full w-full max-w-6xl flex">{children}</div>
+        <div className="h-full w-full max-w-5xl flex">{children}</div>
       </HydrationBoundary>
     </div>
   );

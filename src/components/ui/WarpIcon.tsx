@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 import { Icon } from "@iconify/react";
 
 type IconSize = "sm" | "md" | "lg" | "xl" | number;
