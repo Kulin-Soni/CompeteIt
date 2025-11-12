@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --accent: 55, 251, 177;
+  --accent: 0, 151, 90;
   --accent-disabled: 50, 225, 159;
 
   --primary: 237, 237, 237;
@@ -12,25 +12,20 @@
   --tertiary: 180, 180, 180;
   --danger: theme('colors.danger.400');
   --text-primary: 0, 0, 0;
-  --text-secondary: 255, 255, 255;
-  
-  --static-accent: 55, 251, 177;
+  --text-secondary: 255, 255, 255; 
 }
 
 .dark {
-  --accent: 44, 201, 142;
-  --accent-disabled: 39, 176, 124;
+  --accent: 34, 160, 113;
+  --accent-disabled: 15, 77, 53;
   
   --primary: 0, 20, 20;
   --secondary: 29, 46, 46;
-  --tertiary: 26, 38, 38;
+  --tertiary: 34, 64, 64;
   --danger: theme('colors.danger.200');
 
   --text-primary: 255, 255, 255;
   --text-secondary: 0, 0, 0;
-
-  --static-accent: 44, 201, 142;
-
 }
 
 @theme inline {
@@ -49,6 +44,8 @@
   --font-alef: var(--font-c-alef);
 
   --color-static-accent: rgba(var(--static-accent));
+
+  --breakpoint-xsm: 410;
 }
 
 .center-col {

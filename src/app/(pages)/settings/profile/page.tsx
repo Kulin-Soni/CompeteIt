@@ -7,11 +7,12 @@ import SocialLinksFields from "./SocialLinksFields";
 import VisibilityChecksFields from "./VisibilityChecksFields";
 import IdentityVerification from "./IdentityVerification";
 import BioInput from "./BioInput";
+import Heading from "@/components/ui/Heading";
 const page = async () => {
   return (
     <PageLayout className="overflow-y-scroll scrollbar-hide">
       <div className="w-full px-8 py-20 center-col">
-          <h3 className="font-poppins text-3xl text-text-primary font-semibold mb-20 w-full flex flex-col items-center md:items-start">Profile Settings</h3>
+          <Heading title="Profile Settings" />
           <div className="w-full flex flex-col md:flex-row gap-15 my-2 md:my-10">
           <ProfilePictureField />
           <UserInfoFields />

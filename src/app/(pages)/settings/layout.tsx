@@ -7,7 +7,7 @@ export default async function RootLayout({
   const queryClient = getQueryClient();
   void queryClient.prefetchQuery(userSettings);
   return (
-    <div className="w-full h-full center-col overflow-hidden bg-primary relative">
+    <div className="w-full h-full flex justify-center overflow-hidden bg-primary relative">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="h-full w-full max-w-5xl flex">{children}</div>
       </HydrationBoundary>

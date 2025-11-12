@@ -35,11 +35,11 @@ const Button = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
 Button.displayName = "Button";
 
 const button = tv({
-  base: "px-4 py-3 font-poppins text-text-primary rounded-2xl transition-colors cursor-pointer flex gap-5 items-center",
+  base: "px-4 py-3 font-poppins text-text-primary rounded-2xl transition-colors duration-250 cursor-pointer flex gap-5 items-center",
   variants: {
     intent: {
       primary: "bg-accent/80",
-      secondary: "bg-secondary",
+      secondary: "bg-tertiary/50",
       danger: "bg-danger",
       fw: "bg-transparent hover:bg-secondary flex justify-between",
     },

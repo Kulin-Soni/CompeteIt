@@ -26,8 +26,8 @@ interface AddLinkModal_Props extends Partial<ModalProps> {
 }
 const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...rest }) => {
   const [loading, setLoading] = useState(false);
-  const nameRef = useRef<HTMLInputElement>(null);
-  const linkRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLTextAreaElement>(null);
+  const linkRef = useRef<HTMLTextAreaElement>(null);
   const deleteLink = async (
     onClose: () => void
   )=>{
@@ -48,7 +48,6 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
       openedLinkData?.label === nameRef.current?.value
     )
       return;
-    console.log(nameRef.current?.value, linkRef.current?.value);
     setLoading(true);
     // await setLinks()
 
@@ -116,6 +115,7 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
                     isReadOnly={false}
                     isDisabled={false}
                     maxLength={30}
+                    maxRows={1}
                     defaultValue={openedLinkData?.label}
                     ref={nameRef}
                     onKeyDown={(e) => {
@@ -135,6 +135,7 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
                     defaultValue={openedLinkData?.url}
                     isDisabled={false}
                     maxLength={50}
+                    maxRows={1}
                     ref={linkRef}
                     required
                     onKeyDown={(e) => {

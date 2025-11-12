@@ -72,7 +72,6 @@ export default function VisibilityChecksFields() {
                               onValueChange={(e) => {
                                 const newData = data.map(i=>i.id===field.id?{...i, show: e}:i);
                                 updateData(newData);
-                                console.log(newData);
                               }}
                               isDisabled={loading}
                             />

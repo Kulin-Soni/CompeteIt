@@ -25,6 +25,9 @@ export interface UserProfile {
   links: LinkType[],
   showPublic: ShowPublicType[]
 }
+export interface UserSettings {
+  userProfile: UserProfile,
+}
 /* Profile */
 
 
@@ -35,9 +38,3 @@ export interface UserProfile {
 
 
 
-
-export interface UserSettings {
-  userProfile: UserProfile,
-  // privacy?: PrivacyAndSecuritySettings
-}
-//

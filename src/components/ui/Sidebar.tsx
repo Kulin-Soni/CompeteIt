@@ -238,7 +238,7 @@ const Leaf: React.FC<LeafProps> = ({ params }) => {
       )}
       href={params.url}
     >
-      <p className="font-alef text-md flex-1 text-left pl-4">
+      <p className="font-poppins text-md flex-1 text-left pl-4">
         {params.title}
       </p>
     </Link>

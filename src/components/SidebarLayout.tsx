@@ -9,7 +9,7 @@ export default function SidebarLayout() {
     const [sidebarVisible, setSidebarVisibility] = useState(false);
   return (
     <>
-        <Button isIconOnly className="absolute top-5 right-5 z-100" variant="solid" color="secondary" size="lg" onPress={()=>{setSidebarVisibility(!sidebarVisible)}} name='Open or Close Drawer'>
+        <Button isIconOnly className="absolute top-5 right-5 z-100 bg-secondary" variant="solid" size="lg" onPress={()=>{setSidebarVisibility(!sidebarVisible)}} name='Open or Close Drawer'>
             <WarpIcon name="mdi:dock-left" className="text-text-primary" />
         </Button>
       <AnimatePresence initial={false} mode="wait">

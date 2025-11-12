@@ -4,7 +4,7 @@ import { cn } from '@heroui/react'
 
 const WarpSkeleton: React.FC<Partial<SkeletonProps>> = ({className, ...rest}) => {
   return (
-    <Skeleton className={cn(`w-full h-full`, className)} {...rest} />
+    <Skeleton className={cn(`w-full h-full !bg-secondary`, className)} {...rest} />
   )
 }
 
