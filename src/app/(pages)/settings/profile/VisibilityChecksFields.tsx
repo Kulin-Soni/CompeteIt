@@ -14,6 +14,7 @@ import {
 import React, { useState } from "react";
 import { WarpButton } from "@/components/ui/Buttons";
 import WarpIcon from "@/components/ui/WarpIcon";
+import WarpModal from "@/components/ui/WarpModal";
 
 export default function VisibilityChecksFields() {
   const currentUserProfile = useUserSettings();
@@ -31,17 +32,7 @@ export default function VisibilityChecksFields() {
 
   return (
     <div className="w-full my-2">
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="opaque"
-      size="4xl"
-      placement="center"
-      classNames={{
-        base: "bg-primary/90 border-secondary border-1.5",
-        header: "flex flex-col gap-1 font-poppins text-xl text-text-primary",
-        body: "z-200 h-60 flex items-center justify-center",
-        wrapper: "z-200",
-        closeButton: "text-text-primary hover:bg-tertiary rounded-xl",
-        backdrop: "z-150 bg-primary/90",
-      }}>
+        <WarpModal zLevel={1} isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
           <ModalContent>
             {(onClose) => (
               <>
@@ -90,7 +81,7 @@ export default function VisibilityChecksFields() {
               </>
             )}
           </ModalContent>
-        </Modal>
+        </WarpModal>
         <WarpButton className="w-full" onClick={onOpen} intent="fw" startContent={<WarpIcon name="mdi:show" />} endContent={<WarpIcon name="mdi:chevron-right" />} position="left">
           <span>Social Visibility</span>
         </WarpButton>

@@ -2,7 +2,7 @@
 import React from "react";
 import { CustomInputProps, Id } from "./types";
 import { useUserSettings } from "@/queries/userSettings";
-import CustomInput from "@/components/ui/Input";
+import { SingleLineInput } from "@/components/ui/Input";
 import { addS } from "@/lib/toast";
 
 const submit = async (
@@ -29,8 +29,7 @@ const submit = async (
 
 const FieldInput = (props: CustomInputProps) => {
   return (
-    <CustomInput
-      maxRows={1}
+    <SingleLineInput
       labelPlacement="inside"
       variant="flat"
       errorMessage={(v) => {

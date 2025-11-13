@@ -1,24 +1,15 @@
 "use client"
 import { WarpButton } from '@/components/ui/Buttons'
 import WarpIcon from '@/components/ui/WarpIcon'
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@heroui/react'
+import WarpModal from '@/components/ui/WarpModal'
+import { ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@heroui/react'
 import React from 'react'
 
 export default function IdentityVerification() {
     const {isOpen, onOpenChange ,onOpen} = useDisclosure();
   return (
     <>
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="opaque"
-      size="2xl"
-      placement="center"
-      classNames={{
-        base: "bg-primary border-secondary border-1.5",
-        header: "flex flex-col gap-1 font-poppins text-xl text-text-primary",
-        body: "z-200 h-60 flex items-center justify-center",
-        wrapper: "z-200",
-        closeButton: "text-text-primary hover:bg-tertiary rounded-xl",
-        backdrop: "z-150 bg-primary/90",
-      }}>
+        <WarpModal zLevel={1} isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
             <ModalContent>
                 {(onClose)=>(
                     <>
@@ -35,7 +26,7 @@ export default function IdentityVerification() {
                     </>
                 )}
             </ModalContent>
-        </Modal>
+        </WarpModal>
         <WarpButton startContent={<WarpIcon name="charm:shield-tick" />} endContent={<WarpIcon name="mdi:chevron-right" />} intent="fw" position='left' className='w-full mt-2' onClick={onOpen}>
            <span>
             Verify Your Identity

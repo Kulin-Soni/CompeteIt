@@ -1,6 +1,6 @@
 "use client";
 import { WarpButton as Button, WarpButton } from "@/components/ui/Buttons";
-import CustomInput from "@/components/ui/Input";
+import {SingleLineInput} from "@/components/ui/Input";
 import WarpIcon from "@/components/ui/WarpIcon";
 import { addF, addS } from "@/lib/toast";
 import { useUserSettings } from "@/queries/userSettings";
@@ -16,6 +16,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import React, { useRef, useState } from "react";
+import WarpModal from "@/components/ui/WarpModal";
 
 interface AddLinkModal_Props extends Partial<ModalProps> {
   links: {
@@ -24,19 +25,21 @@ interface AddLinkModal_Props extends Partial<ModalProps> {
   };
   openedLinkData: LinkType | null;
 }
-const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...rest }) => {
+const AddLinkModal: React.FC<AddLinkModal_Props> = ({
+  openedLinkData,
+  links,
+  ...rest
+}) => {
   const [loading, setLoading] = useState(false);
-  const nameRef = useRef<HTMLTextAreaElement>(null);
-  const linkRef = useRef<HTMLTextAreaElement>(null);
-  const deleteLink = async (
-    onClose: () => void
-  )=>{
+  const nameRef = useRef<HTMLInputElement>(null);
+  const linkRef = useRef<HTMLInputElement>(null);
+  const deleteLink = async (onClose: () => void) => {
     if (openedLinkData) {
-      links.updater(prev=>prev.filter(i=>i.id!==openedLinkData.id));
+      links.updater((prev) => prev.filter((i) => i.id !== openedLinkData.id));
       onClose();
-      addS({description: "Removed link from your profile."})
+      addS({ description: "Removed link from your profile." });
     }
-  }
+  };
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
     onClose: () => void
@@ -55,11 +58,14 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
     let returnMsg = "";
     if (openedLinkData) {
       newLinks = links.state.map((link) =>
-        link.id == openedLinkData.id ? {
+        link.id == openedLinkData.id
+          ? {
               ...link,
               label: nameRef.current?.value || "",
               url: linkRef.current?.value || "",
-            } : link);
+            }
+          : link
+      );
 
       returnMsg = "Updated link.";
     } else {
@@ -70,7 +76,8 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
           label: nameRef.current?.value || "",
           type: "other",
           url: linkRef.current?.value || "",
-        }];
+        },
+      ];
 
       returnMsg = "Added link to your profile.";
     }
@@ -80,20 +87,7 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
     addS({ description: returnMsg });
   };
   return (
-    <Modal
-      {...rest}
-      backdrop="opaque"
-      size="md"
-      placement="center"
-      classNames={{
-        base: "bg-primary border-secondary border-1.5",
-        header: "flex flex-col gap-1 font-poppins text-xl text-text-primary",
-        body: "z-200 h-60 flex items-center justify-center",
-        wrapper: "z-200",
-        closeButton: "text-text-primary hover:bg-tertiary rounded-xl",
-        backdrop: "z-150 bg-primary/80",
-      }}
-    >
+    <WarpModal zLevel={2} {...rest} size="md">
       <ModalContent>
         {(onClose) => {
           return (
@@ -107,7 +101,7 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
                 }}
               >
                 <ModalBody>
-                  <CustomInput
+                  <SingleLineInput
                     label="Name"
                     placeholder="LinkedIn"
                     labelPlacement="inside"
@@ -115,7 +109,6 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
                     isReadOnly={false}
                     isDisabled={false}
                     maxLength={30}
-                    maxRows={1}
                     defaultValue={openedLinkData?.label}
                     ref={nameRef}
                     onKeyDown={(e) => {
@@ -126,7 +119,7 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
                     }}
                     required
                   />
-                  <CustomInput
+                  <SingleLineInput
                     label="Link"
                     placeholder="https://linkedin.com/abcd"
                     labelPlacement="inside"
@@ -135,7 +128,6 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
                     defaultValue={openedLinkData?.url}
                     isDisabled={false}
                     maxLength={50}
-                    maxRows={1}
                     ref={linkRef}
                     required
                     onKeyDown={(e) => {
@@ -147,17 +139,21 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
                   />
                 </ModalBody>
 
-
                 <ModalFooter>
-                    {openedLinkData && 
-                    (<Button
-                      type="button" 
-                      disabled={loading} 
+                  {openedLinkData && (
+                    <Button
+                      type="button"
+                      disabled={loading}
                       intent="danger"
                       className="overflow-hidden w-25 h-12"
-                      onClick={async (e)=>{e.preventDefault(); await deleteLink(onClose);}}>
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        await deleteLink(onClose);
+                      }}
+                    >
                       <p>Delete</p>
-                    </Button>)}
+                    </Button>
+                  )}
 
                   <Button
                     type="submit"
@@ -176,17 +172,16 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({ openedLinkData, links, ...
                     )}
                   </Button>
                 </ModalFooter>
-
               </form>
             </>
           );
         }}
       </ModalContent>
-    </Modal>
+    </WarpModal>
   );
 };
 
-const LinksModal: React.FC<Partial<ModalProps>> = (props)=>{
+const LinksModal: React.FC<Partial<ModalProps>> = (props) => {
   const currentUserProfile = useUserSettings();
   const [links, setLinks] = useState<LinkType[]>(
     currentUserProfile.userProfile.links
@@ -195,84 +190,92 @@ const LinksModal: React.FC<Partial<ModalProps>> = (props)=>{
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
-     
-
-    <Modal
-    {...props}
-    backdrop="opaque"
-    size="md"
-    placement="center"
-    classNames={{
-      base: "bg-primary border-secondary border-1.5",
-      header: "flex flex-col font-poppins text-xl text-text-primary",
-      body: "z-100 h-60 flex items-center justify-center",
-      wrapper: "z-100",
-      closeButton: "text-text-primary hover:bg-tertiary rounded-xl",
-      backdrop: "z-50 bg-primary/80",
-    }}>
-      <ModalContent>
-        {()=>(
-          <>
-        <ModalHeader>Social Links</ModalHeader>
-        <ModalBody>
-          <div className="w-full h-80 gap-1 flex flex-col overflow-y-scroll scrollbar-hide">
-          <AddLinkModal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        links={{ state: links, updater: setLinks }}
-        openedLinkData={openedLinkData}
-      /> 
-          {links.map((link, index) => (
-            <button
-            className={`w-full px-4 py-3 bg-secondary hover:bg-tertiary font-poppins font-normal text-text-primary rounded-2xl flex justify-between items-center transition-colors cursor-pointer`}
-            key={index}
-            onClick={() => {
-              setOpen(link);
-              onOpen();
-            }}>
-            <div className="flex justify-between items-center w-5/6">
-              <WarpIcon name="material-symbols:link-rounded" size="lg" />
-              <span className="text-md truncate w-3/4">{link.label}</span>
-            </div>
-            <WarpIcon name="mdi:edit" size="sm" />
-          </button>
-        ))}
-        {links.length <= 0 && (
-          <div className="w-full h-full center-col">
-          <span className="font-alef text-sm text-text-primary">No Social Links Added Yet</span>
-          </div>
-        )}
-        </div>
-        </ModalBody>
-        <ModalFooter>
-          <WarpButton intent="primary" startContent={<WarpIcon name="material-symbols:add-rounded" />} onClick={()=>{setOpen(null); onOpen();}} gapSize="sm">Add Link</WarpButton>
-        </ModalFooter>
-        </>
-      )}
-      </ModalContent>
-    </Modal>
-      </>
-  )
-}
+      <WarpModal zLevel={1} {...props} size="md">
+        <ModalContent>
+          {() => (
+            <>
+              <ModalHeader>Social Links</ModalHeader>
+              <ModalBody>
+                <div className="w-full h-80 gap-1 flex flex-col overflow-y-scroll scrollbar-hide">
+                  <AddLinkModal
+                    isOpen={isOpen}
+                    onOpenChange={onOpenChange}
+                    links={{ state: links, updater: setLinks }}
+                    openedLinkData={openedLinkData}
+                  />
+                  {links.map((link, index) => (
+                    <button
+                      className={`w-full px-4 py-3 bg-secondary hover:bg-tertiary font-poppins font-normal text-text-primary rounded-2xl flex justify-between items-center transition-colors cursor-pointer`}
+                      key={index}
+                      onClick={() => {
+                        setOpen(link);
+                        onOpen();
+                      }}
+                    >
+                      <div className="flex justify-between items-center w-5/6">
+                        <WarpIcon
+                          name="material-symbols:link-rounded"
+                          size="lg"
+                        />
+                        <span className="text-md truncate w-3/4">
+                          {link.label}
+                        </span>
+                      </div>
+                      <WarpIcon name="mdi:edit" size="sm" />
+                    </button>
+                  ))}
+                  {links.length <= 0 && (
+                    <div className="w-full h-full center-col">
+                      <span className="font-alef text-sm text-text-primary">
+                        No Social Links Added Yet
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <WarpButton
+                  intent="primary"
+                  startContent={
+                    <WarpIcon name="material-symbols:add-rounded" />
+                  }
+                  onClick={() => {
+                    setOpen(null);
+                    onOpen();
+                  }}
+                  gapSize="sm"
+                >
+                  Add Link
+                </WarpButton>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </WarpModal>
+    </>
+  );
+};
 
 export default function SocialLinksFields() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <div className="w-full mt-7 mb-2">
-        <LinksModal isOpen={isOpen} onOpenChange={onOpenChange}  />
+      <LinksModal isOpen={isOpen} onOpenChange={onOpenChange} />
 
-        <Button
-          className={`w-full`}
-          intent="fw"
-          position="left"
-          onClick={() => {
-              onOpen();
-          }}
-          endContent={<WarpIcon name="mdi:chevron-right" />}
-          startContent={<WarpIcon name="mdi:link-add" size="md" className="text-inherit" />}
-        >
-          <span className="text-md">Social Links</span>
-        </Button>
-      </div>
+      <Button
+        className={`w-full`}
+        intent="fw"
+        position="left"
+        onClick={() => {
+          onOpen();
+        }}
+        endContent={<WarpIcon name="mdi:chevron-right" />}
+        startContent={
+          <WarpIcon name="mdi:link-add" size="md" className="text-inherit" />
+        }
+      >
+        <span className="text-md">Social Links</span>
+      </Button>
+    </div>
   );
 }
