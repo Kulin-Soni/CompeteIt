@@ -27,7 +27,7 @@ export default function WarpIcon({ name, size = "md", className }: AppIconProps)
       icon={name}
       width={pixelSize}
       height={pixelSize}
-      className={cn(`inline-block align-middle text-current`, className)}
+      className={cn(`inline-block align-middle text-text-primary`, className)}
     />
   );
 };

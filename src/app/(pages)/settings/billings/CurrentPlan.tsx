@@ -1,6 +1,8 @@
 "use client"
 import { WarpButton } from '@/components/ui/Buttons'
+import Subheading from '@/components/ui/Subheading'
 import WarpIcon from '@/components/ui/WarpIcon'
+import WrapSwitch from '@/components/ui/WrapSwitch'
 import { cn, Divider, Switch } from '@heroui/react'
 import React from 'react'
 const commonClasses = {
@@ -17,8 +19,8 @@ export default function CurrentPlan() {
         
   return (
     <div className='w-full my-5'>
-        <div className='w-full p-10 rounded-2xl bg-secondary/50'>
-            <h4 className='text-2xl font-poppins text-text-primary font-medium mb-15 cursor-default'>Active Plan</h4>
+        <div className='w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50'>
+            <Subheading title='Active Plan' />
             <div className='w-full'>
                 <div className='flex flex-col gap-4 sm:flex-row items-center justify-between'>
                 
@@ -78,21 +80,7 @@ export default function CurrentPlan() {
 
             {/* Notification */}
             <div className='w-full flex justify-between items-center'>
-                <span className="font-poppins font-medium text-sm md:text-medium lg:text-lg text-text-primary text-balance cursor-default">Notify when plan ends</span>
-                <div className="w-15 center-col aspect-video">
-                    <Switch
-                        defaultSelected={true}
-                        aria-label={"Notify when plan ends"}
-                        color="primary"
-                        size="md"
-                        classNames={{
-                        wrapper:
-                            "group-data-[selected=true]:bg-accent bg-secondary group-data-[hover=true]:bg-tertiary",
-                        }}
-                        
-                        isDisabled={false}
-                    />
-                </div>
+                <WrapSwitch label='Notify when plan ends' switchProps={{defaultSelected: true}} />
             </div>
             </>)}
 

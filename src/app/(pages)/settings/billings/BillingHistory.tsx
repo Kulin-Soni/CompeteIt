@@ -1,4 +1,5 @@
 "use client"
+import Subheading from "@/components/ui/Subheading";
 import WarpIcon from "@/components/ui/WarpIcon";
 import { Divider } from "@heroui/react";
 import React, { HTMLAttributes } from "react";
@@ -97,10 +98,8 @@ export default function BillingHistory() {
   ];
   return (
     <div className="w-full my-5">
-      <div className="w-full p-10 rounded-2xl bg-secondary/50">
-        <h4 className="text-2xl font-poppins text-text-primary font-medium mb-10 cursor-default">
-          Billing History
-        </h4>
+      <div className="w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50">
+        <Subheading title='Billing History' />
         <Divider className='my-10' />
         <div className="rounded-2xl">
         {billingHistory.reverse().map((bill, index) => (

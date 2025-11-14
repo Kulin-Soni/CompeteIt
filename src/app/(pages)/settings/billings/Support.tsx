@@ -1,3 +1,4 @@
+import Subheading from '@/components/ui/Subheading'
 import WarpIcon from '@/components/ui/WarpIcon'
 import { cn } from '@heroui/react'
 import React, { HTMLAttributes } from 'react'
@@ -20,7 +21,7 @@ const SupportItem: React.FC<SupportItemProps> = ({label, icon, link, classNames,
                     <div>
                     <WarpIcon name={icon} className={cn('text-accent', classNames?.icon)} />
                     </div>
-                    <span className={cn('w-full text-text-primary truncate text-sm md:text-md lg:text-lg font-poppins font-semibold', classNames?.label)}>{label}</span>
+                    <span className={cn('w-full text-text-primary truncate text-sm md:text-md lg:text-lg font-poppins font-normal', classNames?.label)}>{label}</span>
             </div>
         </a>
     )
@@ -29,8 +30,8 @@ const SupportItem: React.FC<SupportItemProps> = ({label, icon, link, classNames,
 export default function Support() {
   return (
     <div className='w-full my-5'>
-        <div className='w-full p-10 rounded-2xl bg-secondary/50'>
-            <h4 className='text-2xl font-poppins text-text-primary font-medium mb-15 cursor-default'>Payments & Billing Support</h4>
+        <div className='w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50'>
+            <Subheading title='Payments & Billing Support' />
             <div className='w-full'>
 
                 <SupportItem icon="ic:baseline-discord" label="Official Discord" link="https://discord.com" />

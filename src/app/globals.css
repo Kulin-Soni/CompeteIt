@@ -10,6 +10,7 @@
   --primary: 237, 237, 237;
   --secondary: 215, 215, 215;
   --tertiary: 180, 180, 180;
+  --quartinary: 202, 202, 202;
   --danger: theme('colors.danger.400');
   --text-primary: 0, 0, 0;
   --text-secondary: 255, 255, 255; 
@@ -20,8 +21,9 @@
   --accent-disabled: 15, 77, 53;
   
   --primary: 0, 20, 20;
-  --secondary: 29, 46, 46;
+  --secondary: 11, 36, 36;
   --tertiary: 34, 64, 64;
+  --quartinary: 4, 46, 46;
   --danger: theme('colors.danger.200');
 
   --text-primary: 255, 255, 255;
@@ -35,6 +37,7 @@
   --color-primary: rgba(var(--primary));
   --color-secondary: rgba(var(--secondary));
   --color-tertiary: rgba(var(--tertiary));
+  --color-quartinary: rgba(var(--quartinary));
   --color-danger: var(--danger);
   
   --color-text-primary: rgba(var(--text-primary));

@@ -42,6 +42,7 @@ const button = tv({
       secondary: "bg-tertiary/50",
       danger: "bg-danger",
       fw: "bg-transparent hover:bg-secondary flex justify-between",
+      icon: "aspect-square bg-tertiary/50 p-3"
     },
     position: {
       centered: "justify-center",
@@ -69,12 +70,12 @@ const innerDiv = tv({
 })
 
 interface VariantProps {
-  intent?: "primary" | "secondary" | "danger" | "fw";
+  intent?: "primary" | "secondary" | "danger" | "fw" | "icon";
   position?: "centered" | "left";
   gapSize?: "sm" | "md" | "lg"
 }
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   startContent?: React.JSX.Element;
   endContent?: React.JSX.Element;
 }
