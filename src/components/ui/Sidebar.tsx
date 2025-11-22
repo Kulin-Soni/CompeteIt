@@ -39,10 +39,30 @@ const options: OptionData[] = [
   {
     key: "explore",
     title: "Explore",
-    redirectable: true,
+    redirectable: false,
     behavior: "branch",
     url: "/explore",
     icon: <WarpIcon name="material-symbols:explore-outline" {...iconProps} />,
+    subOptions: [
+      {
+      key: "competitions",
+        title: "Competitions",
+        url: "/competitions",
+        behavior: "leaf",
+      },    
+      {
+      key: "events",
+        title: "Events",
+        url: "/events",
+        behavior: "leaf",
+      },    
+      {
+      key: "giveaways",
+        title: "Giveaways",
+        url: "/giveaways",
+        behavior: "leaf",
+      },    
+  ]
   },
   {
     key: "chats",
@@ -107,7 +127,7 @@ const options: OptionData[] = [
     behavior: "branch",
     url: "/pro",
     className:
-      "border-1 border-transparent hover:border-accent hover:bg-accent/20",
+      "border-1 border-transparent hover:dark:border-accent hover:dark:bg-accent/20 hover:border-text-primary hover:bg-secondary",
     icon: <WarpIcon name="mdi:star-four-points-outline" {...iconProps} />,
   },
   {
@@ -122,16 +142,16 @@ const options: OptionData[] = [
 
 export default function Sidebar({ visible }: { visible: boolean }) {
   return (
-    <AnimatePresence>
-      <motion.div
-        className={`absolute w-70 h-full pt-40 flex flex-col items-center bg-primary/50 backdrop-blur-3xl z-100 px-3`}
-        initial={{ visibility: "hidden", opacity: 0 }}
-        animate={
-          visible
-            ? { opacity: 1, visibility: "visible" }
-            : { opacity: 0, visibility: "hidden" }
-        }
-      >
+    <AnimatePresence mode="wait">
+      {
+        visible &&
+        <motion.div
+        className={`absolute min-w-60 h-full pt-40 flex flex-col items-center bg-primary z-100`}
+        initial={{ opacity: 0, visibility: "hidden", translateX: -60*4, paddingRight: 0, paddingLeft: 0 }}
+        animate={{ opacity: 1, visibility: "visible", translateX: 0, paddingRight: 3*4, paddingLeft: 3*4 }}
+        exit={{ opacity: 0, visibility: "hidden", translateX: -60*4, paddingRight: 0, paddingLeft: 0 }}
+        transition={{ease: "easeOut"}}
+        >
         {options.map((option) =>
           option.behavior == "branch" ? (
             <Branch data={option} key={option.key} />
@@ -140,6 +160,7 @@ export default function Sidebar({ visible }: { visible: boolean }) {
           )
         )}
       </motion.div>
+      }
     </AnimatePresence>
   );
 }
@@ -157,7 +178,7 @@ const Branch: React.FC<BranchProps> = ({ data }) => {
     <div className="w-full center-col relative">
       <button
         className={cn(
-          `w-full rounded-xl hover:text-text-primary dark:hover:text-accent hover:bg-secondary py-2 px-1.5 gap-3 mb-2 flex justify-center items-center transition-colors duration-300`,
+          `w-full rounded-xl hover:text-text-primary dark:hover:text-accent hover:bg-secondary py-1 px-1.5 gap-3 mb-2 flex justify-center items-center transition-colors duration-300`,
           isCurrentPath
             ? "bg-secondary text-text-primary dark:text-accent"
             : "bg-primary text-text-primary/60",
@@ -175,7 +196,7 @@ const Branch: React.FC<BranchProps> = ({ data }) => {
         <div className="w-8 h-8 px-1 py-1 center-col rounded-xl text-current">
           {data.icon}
         </div>
-        <p className="font-poppins text-xl flex-1 text-left">{data.title}</p>
+        <p className="font-poppins text-md flex-1 text-left">{data.title}</p>
         <AnimatePresence>
           <motion.div
             className="center-col"
@@ -191,7 +212,7 @@ const Branch: React.FC<BranchProps> = ({ data }) => {
         </AnimatePresence>
       </button>
 
-      <AnimatePresence mode="sync">
+      <AnimatePresence mode="sync" initial={false}>
         {open && (
           <motion.div
             className="w-full mb-3 bg-primary rounded-xl"
@@ -238,7 +259,7 @@ const Leaf: React.FC<LeafProps> = ({ params }) => {
       )}
       href={params.url}
     >
-      <p className="font-poppins text-md flex-1 text-left pl-4">
+      <p className="font-poppins text-sm flex-1 text-left pl-4">
         {params.title}
       </p>
     </Link>

@@ -8,19 +8,26 @@ import VisibilityChecksFields from "./VisibilityChecksFields";
 import IdentityVerification from "./IdentityVerification";
 import BioInput from "./BioInput";
 import Heading from "@/components/ui/Heading";
+import { getQueryClient } from "@/lib/get-query-client";
+import { userProfileSettings } from "@/queries/userProfileSettings";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 const page = async () => {
+  const queryClient = getQueryClient();
+  void queryClient.prefetchQuery(userProfileSettings);
   return (
     <PageLayout className="overflow-y-scroll scrollbar-hide">
       <div className="w-full px-8 py-20 center-col">
+        <HydrationBoundary state={dehydrate(queryClient)}>
           <Heading title="Profile Settings" />
           <div className="w-full flex flex-col md:flex-row gap-15 my-2 md:my-10">
-          <ProfilePictureField />
-          <UserInfoFields />
+            <ProfilePictureField />
+            <UserInfoFields />
           </div>
           <BioInput />
           <SocialLinksFields />
           <VisibilityChecksFields />
           <IdentityVerification />
+        </HydrationBoundary>
       </div>
     </PageLayout>
   );

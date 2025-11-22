@@ -25,16 +25,6 @@ export interface UserProfile {
   links: LinkType[],
   showPublic: ShowPublicType[]
 }
-export interface UserSettings {
+export interface UserProfileSettings {
   userProfile: UserProfile,
 }
-/* Profile */
-
-
-
-/* Privacy */
-// export interface PrivacyAndSecuritySettings {}
-/* Privacy */
-
-
-

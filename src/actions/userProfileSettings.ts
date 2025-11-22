@@ -6,7 +6,7 @@ import type {
   Name,
   NamesType,
   ShowPublicType,
-  UserSettings,
+  UserProfileSettings,
 } from "@/app/(pages)/settings/types";
 import { UserProtect } from "@/types/actionAuth";
 function Success<T>(payload: T) {
@@ -16,7 +16,7 @@ function Failed<T>(warning: T){
   throw { code: 0, warning: warning }
 }
 
-export async function getUserSettings(): Promise<UserSettings> {
+export async function getUserSettings(): Promise<UserProfileSettings> {
   return {
     userProfile: {
       avatar: "https://i.pravatar.cc/300",

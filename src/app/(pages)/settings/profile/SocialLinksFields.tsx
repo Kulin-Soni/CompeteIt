@@ -3,7 +3,7 @@ import { WarpButton as Button, WarpButton } from "@/components/ui/Buttons";
 import {SingleLineInput} from "@/components/ui/Input";
 import WarpIcon from "@/components/ui/WarpIcon";
 import { addF, addS } from "@/lib/toast";
-import { useUserSettings } from "@/queries/userSettings";
+import { useUserProfileSettings } from "@/queries/userProfileSettings";
 import { LinkType } from "@/app/(pages)/settings/types";
 import {
   Modal,
@@ -182,7 +182,7 @@ const AddLinkModal: React.FC<AddLinkModal_Props> = ({
 };
 
 const LinksModal: React.FC<Partial<ModalProps>> = (props) => {
-  const currentUserProfile = useUserSettings();
+  const currentUserProfile = useUserProfileSettings();
   const [links, setLinks] = useState<LinkType[]>(
     currentUserProfile.userProfile.links
   );

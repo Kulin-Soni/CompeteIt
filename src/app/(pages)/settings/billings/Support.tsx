@@ -1,6 +1,6 @@
 import Subheading from '@/components/ui/Subheading'
 import WarpIcon from '@/components/ui/WarpIcon'
-import { cn } from '@heroui/react'
+import { cn, Divider } from '@heroui/react'
 import React, { HTMLAttributes } from 'react'
 
 
@@ -32,6 +32,7 @@ export default function Support() {
     <div className='w-full my-5'>
         <div className='w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50'>
             <Subheading title='Payments & Billing Support' />
+            <Divider className='my-10' />
             <div className='w-full'>
 
                 <SupportItem icon="ic:baseline-discord" label="Official Discord" link="https://discord.com" />

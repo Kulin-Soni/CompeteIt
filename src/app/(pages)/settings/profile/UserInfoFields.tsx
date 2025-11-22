@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { CustomInputProps, Id } from "./types";
-import { useUserSettings } from "@/queries/userSettings";
+import { useUserProfileSettings } from "@/queries/userProfileSettings";
 import { SingleLineInput } from "@/components/ui/Input";
 import { addS } from "@/lib/toast";
 
@@ -52,7 +52,7 @@ const FieldInput = (props: CustomInputProps) => {
 };
 
 export default function UserInfoFields() {
-  const currentUserProfile = useUserSettings();
+  const currentUserProfile = useUserProfileSettings();
   return (
     <div className="w-full center-col">
       <FieldInput

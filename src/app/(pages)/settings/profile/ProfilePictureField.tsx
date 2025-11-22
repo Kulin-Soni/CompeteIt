@@ -4,12 +4,12 @@ import { AnimatePresence, motion } from "motion/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { addF, addS } from "@/lib/toast";
-import { useUserSettings } from "@/queries/userSettings";
+import { useUserProfileSettings } from "@/queries/userProfileSettings";
 import WarpSkeleton from "@/components/ui/WarpSkeleton";
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
 export default function ProfilePictureField() {
-  const currentUser = useUserSettings();
+  const currentUser = useUserProfileSettings();
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [fileProcessing, setFileProcessing] = useState(false);

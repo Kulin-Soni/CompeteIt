@@ -1,5 +1,5 @@
-import { addSocialLink, getUserSettings, updateDescription, updateDisplayname, updateProfilePicture, updateSocialLink, updateUsername, updateVisibilityData } from "@/actions/userSettings";
-import { UserSettings } from "@/app/(pages)/settings/types";
+import { addSocialLink, getUserSettings, updateDescription, updateDisplayname, updateProfilePicture, updateSocialLink, updateUsername, updateVisibilityData } from "@/actions/userProfileSettings";
+import { UserProfileSettings } from "@/app/(pages)/settings/types";
 import {
   queryOptions,
   useMutation,
@@ -9,23 +9,23 @@ import {
 import { produce } from "immer";
 
 const QUERY_KEY = ["userSettings"];
-export const userSettings = queryOptions({
+export const userProfileSettings = queryOptions({
   queryKey: QUERY_KEY,
   queryFn: async () => getUserSettings(),
 });
 
-export const useUserSettings = () => {
-  const { data: currentUserProfile } = useSuspenseQuery(userSettings);
-  return currentUserProfile;
+export const useUserProfileSettings = () => {
+  const { data: currentUserProfileSettings } = useSuspenseQuery(userProfileSettings);
+  return currentUserProfileSettings as UserProfileSettings;
 };
-export const useUpdateUserSettings = ()=>{
+export const useUpdateUserProfileSettings = ()=>{
   const queryClient = useQueryClient();
 
   const UpdateProfilePicture = () => {
     return useMutation({
       mutationFn: updateProfilePicture,
       onSuccess: (data) => {
-        queryClient.setQueryData(QUERY_KEY, (prev: UserSettings): UserSettings =>produce(prev, draft => {
+        queryClient.setQueryData(QUERY_KEY, (prev: UserProfileSettings): UserProfileSettings =>produce(prev, draft => {
           draft.userProfile.avatar = data.data
         }))
       },
@@ -35,7 +35,7 @@ export const useUpdateUserSettings = ()=>{
     return useMutation({
       mutationFn: updateUsername,
       onSuccess: (data) => {
-        queryClient.setQueryData(QUERY_KEY, (prev: UserSettings): UserSettings =>produce(prev, draft => {
+        queryClient.setQueryData(QUERY_KEY, (prev: UserProfileSettings): UserProfileSettings =>produce(prev, draft => {
           draft.userProfile.userName = data.data
         }))
       },
@@ -46,7 +46,7 @@ export const useUpdateUserSettings = ()=>{
     return useMutation({
       mutationFn: updateDisplayname,
       onSuccess: (data) => {
-        queryClient.setQueryData(QUERY_KEY, (prev: UserSettings): UserSettings =>produce(prev, draft => {
+        queryClient.setQueryData(QUERY_KEY, (prev: UserProfileSettings): UserProfileSettings =>produce(prev, draft => {
           draft.userProfile.displayName = data.data
         }))
       },
@@ -57,7 +57,7 @@ export const useUpdateUserSettings = ()=>{
     return useMutation({
       mutationFn: updateDescription,
       onSuccess: (data) => {
-        queryClient.setQueryData(QUERY_KEY, (prev: UserSettings): UserSettings =>produce(prev, draft => {
+        queryClient.setQueryData(QUERY_KEY, (prev: UserProfileSettings): UserProfileSettings =>produce(prev, draft => {
           draft.userProfile.description = data.data
         }))
       },
@@ -68,7 +68,7 @@ export const useUpdateUserSettings = ()=>{
     return useMutation({
       mutationFn: addSocialLink,
       onSuccess: (data) => {
-        queryClient.setQueryData(QUERY_KEY, (prev: UserSettings): UserSettings =>produce(prev, draft => {
+        queryClient.setQueryData(QUERY_KEY, (prev: UserProfileSettings): UserProfileSettings =>produce(prev, draft => {
           draft.userProfile.links.push(data.data)
         }))
       },
@@ -79,7 +79,7 @@ export const useUpdateUserSettings = ()=>{
     return useMutation({
       mutationFn: updateDescription,
       onSuccess: (data) => {
-        queryClient.setQueryData(QUERY_KEY, (prev: UserSettings): UserSettings =>produce(prev, draft => {
+        queryClient.setQueryData(QUERY_KEY, (prev: UserProfileSettings): UserProfileSettings =>produce(prev, draft => {
           draft.userProfile.links.filter(i=>i.id!=data.data)
         }))
       },
@@ -90,7 +90,7 @@ export const useUpdateUserSettings = ()=>{
     return useMutation({
       mutationFn: updateSocialLink,
       onSuccess: (data) => {
-        queryClient.setQueryData(QUERY_KEY, (prev: UserSettings): UserSettings =>produce(prev, draft => {
+        queryClient.setQueryData(QUERY_KEY, (prev: UserProfileSettings): UserProfileSettings =>produce(prev, draft => {
           draft.userProfile.links.map(i=>i.id==data.data.id?{...data.data}:i)
         }))
       },
@@ -101,7 +101,7 @@ export const useUpdateUserSettings = ()=>{
     return useMutation({
       mutationFn: updateVisibilityData,
       onSuccess: (data) => {
-        queryClient.setQueryData(QUERY_KEY, (prev: UserSettings): UserSettings =>produce(prev, draft => {
+        queryClient.setQueryData(QUERY_KEY, (prev: UserProfileSettings): UserProfileSettings =>produce(prev, draft => {
           const i = draft.userProfile.showPublic;
           
         }))

@@ -68,7 +68,6 @@ const LoggedInSessionsModal = ({
               const time = device.lastLoggedIn;
               const elapsed = (Date.now() - time)/1000;
               let elapsedTimeComment = "";
-              console.log(elapsed);
               if (elapsed < 59) {
                 elapsedTimeComment = "Just Now";
               } else if ((elapsed / 60) < 59) {

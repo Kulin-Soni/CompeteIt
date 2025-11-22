@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { addS } from "@/lib/toast";
-import { useUserSettings } from "@/queries/userSettings";
+import { useUserProfileSettings } from "@/queries/userProfileSettings";
 import { MultilineInput } from "@/components/ui/Input";
 import { TextAreaProps } from "@heroui/react";
 
@@ -58,7 +58,7 @@ const Description = (props: TextAreaProps) => {
 };
 
 export default function BioInput() {
-  const currentUserProfile = useUserSettings();
+  const currentUserProfile = useUserProfileSettings();
   return (
     <Description
       defaultValue={currentUserProfile.userProfile.description ?? ""} />

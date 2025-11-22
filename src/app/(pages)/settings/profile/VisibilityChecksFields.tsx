@@ -1,9 +1,8 @@
 "use client";
 import { addS } from "@/lib/toast";
-import { useUserSettings } from "@/queries/userSettings";
+import { useUserProfileSettings } from "@/queries/userProfileSettings";
 import { ShowPublicType } from "@/app/(pages)/settings/types";
 import {
-  Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
@@ -18,7 +17,7 @@ import WarpModal from "@/components/ui/WarpModal";
 import JustifiedContainer from "@/components/ui/JustifiedContainer";
 
 export default function VisibilityChecksFields() {
-  const currentUserProfile = useUserSettings();
+  const currentUserProfile = useUserProfileSettings();
   const [loading, setLoading] = useState(false);
   const [data, updateData] = useState(
     currentUserProfile.userProfile.showPublic
@@ -45,7 +44,7 @@ export default function VisibilityChecksFields() {
           {(onClose) => (
             <>
               <ModalHeader>Social Visibility</ModalHeader>
-              <ModalBody>
+              <ModalBody className="mt-5">
                 {currentUserProfile.userProfile.showPublic.map(
                   (field, index) => {
                     return (
