@@ -1,10 +1,15 @@
 import PageLayout from '@/components/PageLayout'
 import React from 'react'
+import AppPreferences from './AppPreferences'
+import Heading from '@/components/ui/Heading'
 
 const page = () => {
   return (
-    <PageLayout className="overflow-y-scroll scrollbar-hide py-20 px-8">
-      <span className='text-text-primary text-lg font-poppins'>Nothing to see here yet...</span>
+    <PageLayout className="overflow-y-scroll scrollbar-hide">
+      <div className='w-full px-2 py-20 center-col'>
+        <Heading title="General Settings" />
+        <AppPreferences />
+      </div>
     </PageLayout>
   )
 }

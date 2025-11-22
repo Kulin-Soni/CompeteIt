@@ -1,15 +1,15 @@
-import { Select, SelectItem } from '@heroui/react'
+import { Select, SelectItem, SelectProps } from '@heroui/react'
 import React from 'react'
 
-interface OptionSelectMenuProps<K> {
+interface OptionSelectMenuProps<K> extends Omit<SelectProps, "children"> {
  data: K[];
- label: keyof K;
+ labelKey: keyof K;
  specialKey: keyof K;
  defaultKey?: K[keyof K];
  ariaLabel: string;
 }
 
-function OptionSelectMenu<T extends Record<string, unknown>>({ data, label, specialKey, defaultKey, ariaLabel }: OptionSelectMenuProps<T>) {
+function OptionSelectMenu<K extends Record<string, unknown>>({ data, labelKey, specialKey, defaultKey, ariaLabel, ...rest }: OptionSelectMenuProps<K>) {
   return (<Select
       aria-label={ariaLabel}
       className="w-30 sm:w-40"
@@ -33,13 +33,14 @@ function OptionSelectMenu<T extends Record<string, unknown>>({ data, label, spec
           content: "bg-quartinary p-1",
         },
       }}
-      defaultSelectedKeys={defaultKey && [String(defaultKey)]}
->
-        {(item)=>(<SelectItem key={String(item[specialKey])} textValue={String(item[label])}>
+      defaultSelectedKeys={defaultKey && [String(defaultKey)]} {...rest}>
+        {(item)=>{
+          const typedItem = item as K;
+          return (<SelectItem key={String(typedItem[specialKey])} textValue={String(typedItem[labelKey])}>
           <span className="font-alef text-sm text-text-primary">
-          {String(item[label])}
+          {String(typedItem[labelKey])}
           </span>
-          </SelectItem>)}
+          </SelectItem>)}}
       </Select>)
 }
 

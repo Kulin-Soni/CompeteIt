@@ -26,7 +26,7 @@ function ProfileVisibility() {
             <OptionSelectMenu
               ariaLabel="Profile Visibility Preference"
               data={ProfileVisibiityItems}
-              label="label"
+              labelKey="label"
               specialKey="value"
               defaultKey="public"
             />

@@ -18,7 +18,7 @@ import React from "react";
 
 const ResetPassword = () => {
   return (
-    <JustifiedContainer>
+    <JustifiedContainer className="my-5">
       <JustifiedHeading>Reset Password</JustifiedHeading>
       <WarpButton
         startContent={<WarpIcon name="mdi:open-in-new" />}
@@ -59,7 +59,7 @@ const LoggedInSessionsModal = ({
     },
   ];
   return (
-    <WarpModal zLevel={1} isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
+    <WarpModal zLevel={1} isOpen={isOpen} onOpenChange={onOpenChange} size="sm">
       <ModalContent>
         <ModalHeader>Logged In Sessions</ModalHeader>
         <ModalBody>
@@ -76,24 +76,24 @@ const LoggedInSessionsModal = ({
               } else if ((elapsed / (60 * 60)) < 23) {
                 elapsedTimeComment = Math.ceil(elapsed / 3600) + " hours ago";
               } else {
-                elapsedTimeComment = (dayjs(new Date(time * 1000))).format("DD MMMM, YYYY");
+                elapsedTimeComment = (dayjs(new Date(time))).format("DD MMMM, YYYY");
               }
               return (
-                <JustifiedContainer key={index} className={cn("my-5 rounded-2xl border-2 border-transparent", device.activeSession&&"border-text-primary dark:border-accent bg-quartinary")}>
+                <JustifiedContainer key={index} className={cn("my-5 rounded-2xl border-1 border-transparent p-1", device.activeSession&&"border-text-primary dark:border-accent bg-quartinary")}>
 
                   <div className="flex items-center w-full h-full">
-                  <div className="center-col bg-secondary rounded-2xl p-4">
+                  <div className="center-col bg-secondary rounded-2xl p-3">
                     <WarpIcon
                       name={
                         device.type == "pc"
                           ? "material-symbols:desktop-windows-outline-rounded"
                           : "material-symbols:mobile-3-outline"
                       }
-                      size="lg"
+                      size="sm"
                     />
                   </div>
                   <div className="flex flex-col justify-center font-poppins text-text-primary ml-5">
-                    <h4 className="text-sm sm:text-lg">{device.location}</h4>
+                    <h4 className="text-sm sm:text-medium">{device.location}</h4>
                     <h6 className="text-[12px] sm:text-sm">{device.activeSession?"Currently Active":elapsedTimeComment}</h6>
                   </div>
                   </div>
@@ -130,6 +130,15 @@ const LoggedInSessions = () => {
   );
 };
 
+const Logout = ()=>{
+  return (<JustifiedContainer>
+    <JustifiedHeading>Log out of current device</JustifiedHeading>
+    <WarpButton intent="danger" startContent={<WarpIcon name="material-symbols:logout-rounded" />}>
+      Logout
+    </WarpButton>
+  </JustifiedContainer>)
+}
+
 function LoginCredential() {
   return (
     <div className="w-full my-5">
@@ -139,6 +148,8 @@ function LoginCredential() {
 
         <LoggedInSessions />
         <ResetPassword />
+        <Logout />
+
       </div>
     </div>
   );

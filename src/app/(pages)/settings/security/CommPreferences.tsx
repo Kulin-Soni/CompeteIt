@@ -31,7 +31,7 @@ const AllowedMessagesSelection = () => {
       <OptionSelectMenu
         ariaLabel="Allow Messages From Preference"
         data={options}
-        label="label"
+        labelKey="label"
         specialKey="value"
         defaultKey="team_mem"
       />
@@ -119,7 +119,7 @@ const BlockedUsersModal = ({
     },
   ];
   return (
-    <WarpModal zLevel={1} isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
+    <WarpModal zLevel={1} isOpen={isOpen} onOpenChange={onOpenChange} size="md">
       <ModalContent>
             <ModalHeader>Blocked Users</ModalHeader>
             <ModalBody>

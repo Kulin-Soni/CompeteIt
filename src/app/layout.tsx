@@ -19,7 +19,7 @@ const alef = Alef({
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${alef.variable} selection:text-white selection:bg-cyan-800 min-w-screen min-h-screen`}>
+      <body className={`${poppins.variable} ${alef.variable} dark selection:text-white selection:bg-cyan-800 min-w-screen min-h-screen`}>
         <Providers>
           <div className="h-screen w-screen flex relative">
             <SidebarLayout />

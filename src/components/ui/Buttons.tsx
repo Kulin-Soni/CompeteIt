@@ -40,7 +40,7 @@ const button = tv({
     intent: {
       primary: "bg-accent/80",
       secondary: "bg-tertiary/50",
-      danger: "bg-danger",
+      danger: "bg-danger active:dark:bg-danger-100 active:bg-danger-500",
       fw: "bg-transparent hover:bg-secondary flex justify-between",
       icon: "aspect-square bg-tertiary/50 p-3"
     },
