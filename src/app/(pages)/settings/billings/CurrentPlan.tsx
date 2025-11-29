@@ -1,10 +1,11 @@
 "use client"
 import { WarpButton } from '@/components/ui/Buttons'
+import PaddingContainer from '@/components/ui/PaddingContainer'
 import Subheading from '@/components/ui/Subheading'
 import WarpIcon from '@/components/ui/WarpIcon'
 import WrapSwitch from '@/components/ui/WrapSwitch'
-import { cn, Divider, Switch } from '@heroui/react'
-import React from 'react'
+import { cn, Divider } from '@heroui/react'
+import React, { useState } from 'react'
 const commonClasses = {
     activePlanName: "text-md xsm:text-lg sm:text-2xl font-poppins font-medium cursor-default",
     activePlanActionBtn: "py-2 w-full sm:w-auto rounded-full",
@@ -15,11 +16,10 @@ const PlanInfoText = ({className, text}: {className?: string, text: string})=>{
 }
 export default function CurrentPlan() {
     const x = true;
-    const y = 2;
+    const [y, setY] = useState(2);
         
   return (
-    <div className='w-full my-5'>
-        <div className='w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50'>
+    <PaddingContainer>
             <Subheading title='Active Plan' />
             <div className='w-full'>
                 <div className='flex flex-col gap-4 sm:flex-row items-center justify-between'>
@@ -84,7 +84,6 @@ export default function CurrentPlan() {
             </div>
             </>)}
 
-        </div>
-    </div>
+    </PaddingContainer>
   )
 }

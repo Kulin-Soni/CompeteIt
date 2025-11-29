@@ -25,7 +25,7 @@ function UsageSummary() {
   return (
     <div className="w-full my-5">
       <div className="w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50">
-        <Subheading title="Monthly Usage Summary" className="mb-0" />
+        <Subheading title="Usage Summary" className="mb-0" />
         <span className="font-poppins text-sm text-text-primary">
           Your usage quota of created competitions, events, and giveaways.
         </span>
@@ -34,7 +34,7 @@ function UsageSummary() {
           {usageSummaryData.map((item, index, arr) => (
             <div
               key={index}
-              className={cn("flex flex-col justify-center items-center", arr.length%2!=0&&"last:col-span-2 last:sm:col-span-1")}
+              className={cn("flex flex-col justify-center items-center bg-quartinary/50 rounded-3xl p-5", arr.length%2!=0&&"last:col-span-2 last:sm:col-span-1")}
             >
 
               <ProgressBar progress={item.created} total={item.cap} />

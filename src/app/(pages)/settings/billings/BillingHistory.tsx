@@ -1,4 +1,5 @@
 "use client"
+import PaddingContainer from "@/components/ui/PaddingContainer";
 import Subheading from "@/components/ui/Subheading";
 import WarpIcon from "@/components/ui/WarpIcon";
 import { Divider } from "@heroui/react";
@@ -97,8 +98,7 @@ export default function BillingHistory() {
     },
   ];
   return (
-    <div className="w-full my-5">
-      <div className="w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50">
+    <PaddingContainer>
         <Subheading title='Billing History' />
         <Divider className='my-10' />
         <div className="rounded-2xl">
@@ -106,7 +106,6 @@ export default function BillingHistory() {
           <Billing key={index} data={bill} label={`${bill.invoiceDate}`} />
         ))}
         </div>
-      </div>
-    </div>
+    </PaddingContainer>
   );
 }

@@ -23,7 +23,7 @@ function ProgressBar({ progress, total }: ProgressBarProps) {
             r="65"
             cx="75"
             cy="75"
-            className="fill-transparent stroke-tertiary stroke-[15px]"
+            className="fill-transparent stroke-accent-d/10 stroke-[15px]"
           />
           <circle
             r="65"

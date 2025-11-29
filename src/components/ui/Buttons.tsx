@@ -38,8 +38,8 @@ const button = tv({
   base: "px-4 py-3 font-poppins text-text-primary rounded-2xl transition-colors duration-250 cursor-pointer flex gap-5 items-center",
   variants: {
     intent: {
-      primary: "bg-accent/80",
-      secondary: "bg-tertiary/50",
+      primary: "bg-accent/80 hover:bg-accent/70",
+      secondary: "bg-tertiary/50 hover:bg-tertiary/75 active:bg-tertiary",
       danger: "bg-danger active:dark:bg-danger-100 active:bg-danger-500",
       fw: "bg-transparent hover:bg-secondary flex justify-between",
       icon: "aspect-square bg-tertiary/50 p-3"

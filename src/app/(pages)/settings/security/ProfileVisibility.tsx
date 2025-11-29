@@ -6,6 +6,7 @@ import OptionSelectMenu from "@/components/ui/OptionSelectMenu";
 import JustifiedContainer from "@/components/ui/JustifiedContainer";
 import WrapSwitch from "@/components/ui/WrapSwitch";
 import JustifiedHeading from "@/components/ui/JustifiedHeading";
+import PaddingContainer from "@/components/ui/PaddingContainer";
 
 function ProfileVisibility() {
   const ProfileVisibiityItems = [
@@ -13,8 +14,7 @@ function ProfileVisibility() {
     { value: "public", label: "Public" },
   ];
   return (
-    <div className="w-full my-5">
-      <div className="w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50">
+    <PaddingContainer>
         <Subheading title="Profile Privacy" />
         <Divider className="my-10" />
 
@@ -33,8 +33,7 @@ function ProfileVisibility() {
           </JustifiedContainer>
           <WrapSwitch label="Anonymous Participation" description="Your information will only be shared to event host when you participate." />
         </div>
-      </div>
-    </div>
+      </PaddingContainer>
   );
 }
 

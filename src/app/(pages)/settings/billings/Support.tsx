@@ -1,3 +1,4 @@
+import PaddingContainer from '@/components/ui/PaddingContainer'
 import Subheading from '@/components/ui/Subheading'
 import WarpIcon from '@/components/ui/WarpIcon'
 import { cn, Divider } from '@heroui/react'
@@ -29,8 +30,7 @@ const SupportItem: React.FC<SupportItemProps> = ({label, icon, link, classNames,
 
 export default function Support() {
   return (
-    <div className='w-full my-5'>
-        <div className='w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50'>
+    <PaddingContainer>
             <Subheading title='Payments & Billing Support' />
             <Divider className='my-10' />
             <div className='w-full'>
@@ -42,7 +42,6 @@ export default function Support() {
                 <SupportItem icon="ic:round-phone" label="+1800 0000 1213" link="tel:1800000213" />
 
             </div>
-        </div>
-        </div>
+    </PaddingContainer>
   )
 }

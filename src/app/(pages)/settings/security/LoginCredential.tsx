@@ -2,6 +2,7 @@
 import { WarpButton } from "@/components/ui/Buttons";
 import JustifiedContainer from "@/components/ui/JustifiedContainer";
 import JustifiedHeading from "@/components/ui/JustifiedHeading";
+import PaddingContainer from "@/components/ui/PaddingContainer";
 import Subheading from "@/components/ui/Subheading";
 import WarpIcon from "@/components/ui/WarpIcon";
 import WarpModal from "@/components/ui/WarpModal";
@@ -140,17 +141,14 @@ const Logout = ()=>{
 
 function LoginCredential() {
   return (
-    <div className="w-full my-5">
-      <div className="w-full py-10 px-5 md:px-10 rounded-2xl bg-secondary/50">
+    <PaddingContainer>
         <Subheading title="Manage Login Credentials" />
         <Divider className="my-10" />
 
         <LoggedInSessions />
         <ResetPassword />
         <Logout />
-
-      </div>
-    </div>
+    </PaddingContainer>
   );
 }
 

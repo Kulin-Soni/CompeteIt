@@ -6,12 +6,10 @@ import EngagementSummary from './EngagementSummary'
 
 const page = () => {
   return (
-    <PageLayout className="overflow-y-scroll scrollbar-hide">
-      <div className='w-full px-2 py-20 center-col'>
+    <PageLayout className="overflow-y-scroll scrollbar-hide w-full px-2 py-20 center-col">
         <Heading title="Analytics & Usage" />
         <UsageSummary />
         <EngagementSummary />
-      </div>
     </PageLayout>
   )
 }

@@ -32,19 +32,15 @@ function EngagementSummary() {
           {engagementSummaryData.map((item, index, arr) => (
             <div
               key={index}
-              className={cn("flex flex-col justify-center items-center", arr.length%2!=0&&"last:col-span-2 last:sm:col-span-1")}
+              className={cn("flex flex-col justify-center items-center bg-quartinary/50 rounded-3xl p-5", arr.length%2!=0&&"last:col-span-2 last:sm:col-span-1")}
             >
-
-              {/* <h4 className="font-poppins font-bold text-xl w-full text-text-primary text-center">
-                {item.created}
-              </h4> */}
               <div className="center-col">
               <ProgressBar progress={item.joined} total={item.cap} />
                 </div>
               <h6 className="font-poppins font-semibold text-lg w-full text-accent text-center pt-0">
                 {capitalize(item.identifier) + "s"}
               </h6>
-            </div>
+              </div>
           ))}
         </div>
       </div>
