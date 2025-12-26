@@ -1,5 +1,5 @@
 # CompeteIt
-
+⚠️ Project is under development.
 CompeteIt is a platform to organize and manage competitions, giveaways, and events - all in one place. Whether you're hosting a small community contest or a large-scale event, CompeteIt streamlines the process from start to finish.
 
 ## Features
