@@ -12,7 +12,7 @@ const commonClasses = {
     activePlanInfoContainer: "w-full flex justify-between my-2"
 }
 const PlanInfoText = ({className, text}: {className?: string, text: string})=>{
-    return (<span className={cn(`font-poppins text-text-primary text-sm xsm:text-md`, className)}>{text}</span>)
+    return (<span className={cn(`apply-text text-sm xsm:text-md`, className)}>{text}</span>)
 }
 export default function CurrentPlan() {
     const x = true;

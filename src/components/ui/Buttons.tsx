@@ -35,14 +35,15 @@ const Button = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
 Button.displayName = "Button";
 
 const button = tv({
-  base: "px-4 py-3 font-poppins text-text-primary rounded-2xl transition-colors duration-250 cursor-pointer flex gap-5 items-center",
+  base: "p-3 apply-text rounded-2xl transition-colors duration-250 cursor-pointer flex gap-5 items-center",
   variants: {
     intent: {
-      primary: "bg-accent/80 hover:bg-accent/70",
-      secondary: "bg-tertiary/50 hover:bg-tertiary/75 active:bg-tertiary",
+      primary: "bg-accent hover:bg-accent-d text-black",
+      secondary: "bg-secondary hover:bg-quartinary active:bg-tertiary border border-text-primary/10",
       danger: "bg-danger active:dark:bg-danger-100 active:bg-danger-500",
-      fw: "bg-transparent hover:bg-secondary flex justify-between",
-      icon: "aspect-square bg-tertiary/50 p-3"
+      mono: "bg-text-primary dark:bg-text-secondary text-text-secondary dark:bg-text-text-primary",
+      fullWidth: "bg-transparent hover:bg-secondary flex justify-between",
+      icon: "aspect-square bg-secondary hover:bg-quartinary active:bg-tertiary border border-text-primary/10 p-3"
     },
     position: {
       centered: "justify-center",
@@ -70,7 +71,7 @@ const innerDiv = tv({
 })
 
 interface VariantProps {
-  intent?: "primary" | "secondary" | "danger" | "fw" | "icon";
+  intent?: "primary" | "secondary" | "danger" | "fullWidth" | "icon" | "mono";
   position?: "centered" | "left";
   gapSize?: "sm" | "md" | "lg"
 }

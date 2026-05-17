@@ -8,7 +8,7 @@ import type {
   ShowPublicType,
   UserProfileSettings,
 } from "@/app/(pages)/settings/types";
-import { UserProtect } from "@/types/actionAuth";
+import { UserProtect } from "../types/actionAuth";
 function Success<T>(payload: T) {
   return {code: 1, data: payload}
 }

@@ -91,25 +91,25 @@ function Pro() {
   ]; // dummy data
   return (
     <div className="center-col w-full my-5">
-      <div className="grid grid-cols-1 gap-5 w-1/2">
+      <div className="grid grid-cols-1 gap-5 w-full md:w-1/2">
         {plans.map((plan, index) => {
          const tier = plan.monthly
          return (
           <div key={index} className={cn("relative w-full h-full bg-secondary/50 center-col rounded-2xl border-2 border-transparent", plan.special&&"border-accent/40 bg-accent/10")}>
 
-           {plan.special&&<span className="absolute right-5 top-5 py-2 px-4 bg-accent-d font-poppins text-text-primary text-[12px] rounded-full text-center center-col">{plan.special}</span>}
+           {plan.special&&<span className="absolute right-5 top-5 py-2 px-4 bg-accent-d apply-text text-[12px] rounded-full text-center center-col">{plan.special}</span>}
 
             <div className="w-full h-full center-col p-7">
               <h4 className="text-3xl text-accent font-poppins font-semibold w-full">{plan.name}</h4>
-              <span className="text-sm text-text-primary font-poppins font-light w-full pt-1">{plan.description}</span>
+              <span className="text-sm apply-text font-light w-full pt-1">{plan.description}</span>
 
-              <h4 className="text-3xl text-text-primary font-poppins font-medium w-full pt-10 flex items-center">${tier.price}<span className="text-sm pl-1">/ mo</span></h4>
+              <h4 className="text-3xl apply-text font-medium w-full pt-10 flex items-center">${tier.price}<span className="text-sm pl-1">/ mo</span></h4>
 
               <div className="w-full center-col mt-5">
               {tier.features.map((feature, index)=>(
                <div key={index} className="flex gap-5 w-full my-1.5 items-center">
                 <WarpIcon name={feature.icon} size={20} />
-                <span className="font-poppins text-text-primary">{feature.label}</span>
+                <span className="apply-text">{feature.label}</span>
                </div>
               ))}
               </div>

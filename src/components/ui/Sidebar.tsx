@@ -121,16 +121,6 @@ const options: OptionData[] = [
     ],
   },
   {
-    key: "pro",
-    title: "CompeteIt Pro",
-    redirectable: true,
-    behavior: "branch",
-    url: "/pro",
-    className:
-      "border-1 border-transparent hover:dark:border-accent hover:dark:bg-accent/20 hover:border-text-primary hover:bg-secondary",
-    icon: <WarpIcon name="mdi:star-four-points-outline" {...iconProps} />,
-  },
-  {
     key: "help",
     title: "Help",
     redirectable: true,
@@ -146,10 +136,10 @@ export default function Sidebar({ visible }: { visible: boolean }) {
       {
         visible &&
         <motion.div
-        className={`absolute min-w-60 h-full pt-40 flex flex-col items-center bg-primary z-100`}
-        initial={{ opacity: 0, visibility: "hidden", translateX: -60*4, paddingRight: 0, paddingLeft: 0 }}
-        animate={{ opacity: 1, visibility: "visible", translateX: 0, paddingRight: 3*4, paddingLeft: 3*4 }}
-        exit={{ opacity: 0, visibility: "hidden", translateX: -60*4, paddingRight: 0, paddingLeft: 0 }}
+        className={`absolute lg:relative top-0 left-0 h-full bg-primary pt-40 flex flex-col items-center z-110`}
+        initial={{ opacity: 0, translateX: -60*4, paddingRight: 0, paddingLeft: 0, width: 0 }}
+        animate={{ opacity: 1, translateX: 0, paddingRight: 3*4, paddingLeft: 3*4, width: 280 }}
+        exit={{ opacity: 0, translateX: -60*4, paddingRight: 0, paddingLeft: 0, width: 0 }}
         transition={{ease: "easeOut"}}
         >
         {options.map((option) =>
@@ -178,13 +168,14 @@ const Branch: React.FC<BranchProps> = ({ data }) => {
     <div className="w-full center-col relative">
       <button
         className={cn(
-          `w-full rounded-xl hover:text-text-primary dark:hover:text-accent hover:bg-secondary py-1 px-1.5 gap-3 mb-2 flex justify-center items-center transition-colors duration-300`,
+          `w-full rounded-xl hover:text-accent hover:bg-secondary py-1 px-1.5 gap-3 mb-2 flex justify-center items-center transition-colors duration-300`,
           isCurrentPath
-            ? "bg-secondary text-text-primary dark:text-accent"
+            ? "bg-secondary text-accent"
             : "bg-primary text-text-primary/60",
           data.className
         )}
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           if (!data.redirectable) {
             setState((prev) => !prev);
           } else {
@@ -213,7 +204,7 @@ const Branch: React.FC<BranchProps> = ({ data }) => {
       </button>
 
       <AnimatePresence mode="sync" initial={false}>
-        {open && (
+        {(open && data.redirectable==false) && (
           <motion.div
             className="w-full mb-3 bg-primary rounded-xl"
             initial={{ opacity: 0, height: 0 }}
@@ -221,8 +212,7 @@ const Branch: React.FC<BranchProps> = ({ data }) => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ ease: "linear", duration: 0.1 }}
           >
-            {data.redirectable===false &&
-              data.subOptions?.map((option) =>
+            {data.subOptions?.map((option) =>
                 option.behavior == "branch" ? (
                   <Branch
                     data={{ ...option, url: `${data.url}${option.url}` }}
@@ -252,12 +242,13 @@ const Leaf: React.FC<LeafProps> = ({ params }) => {
       className={cn(
         `w-full px-1.5 py-2 not-first:not-last:my-1 last:mt-1 first:mb-1 text-text-primary/60 block text-md transition-colors duration-300 hover:bg-secondary rounded-xl leading-5 ${
           path == params.url
-            ? "bg-secondary dark:text-accent text-text-primary hover:dark:text-accent hover:text-text-primary"
+            ? "bg-secondary text-accent"
             : "hover:text-text-primary"
         }`,
         params.className
       )}
       href={params.url}
+      onClick={e=>{e.stopPropagation();}}
     >
       <p className="font-poppins text-sm flex-1 text-left pl-4">
         {params.title}

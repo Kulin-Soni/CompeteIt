@@ -92,7 +92,7 @@ const LoggedInSessionsModal = ({
                       size="sm"
                     />
                   </div>
-                  <div className="flex flex-col justify-center font-poppins text-text-primary ml-5">
+                  <div className="flex flex-col justify-center apply-text ml-5">
                     <h4 className="text-sm sm:text-medium">{device.location}</h4>
                     <h6 className="text-[12px] sm:text-sm">{device.activeSession?"Currently Active":elapsedTimeComment}</h6>
                   </div>

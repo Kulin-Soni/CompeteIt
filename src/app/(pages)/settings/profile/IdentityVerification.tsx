@@ -27,7 +27,7 @@ export default function IdentityVerification() {
                 )}
             </ModalContent>
         </WarpModal>
-        <WarpButton startContent={<WarpIcon name="charm:shield-tick" />} endContent={<WarpIcon name="mdi:chevron-right" />} intent="fw" position='left' className='w-full mt-2' onClick={onOpen}>
+        <WarpButton startContent={<WarpIcon name="charm:shield-tick" />} endContent={<WarpIcon name="mdi:chevron-right" />} intent="fullWidth" position='left' className='w-full mt-2' onClick={onOpen}>
            <span>
             Verify Your Identity
             </span>

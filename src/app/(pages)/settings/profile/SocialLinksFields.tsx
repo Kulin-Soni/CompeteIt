@@ -264,7 +264,7 @@ export default function SocialLinksFields() {
 
       <Button
         className={`w-full`}
-        intent="fw"
+        intent="fullWidth"
         position="left"
         onClick={() => {
           onOpen();

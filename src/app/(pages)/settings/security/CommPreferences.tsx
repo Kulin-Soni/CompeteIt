@@ -143,7 +143,7 @@ const BlockedUsersModal = ({
                           />
                       </div>
 
-                      <div className="flex flex-col justify-center font-poppins text-text-primary">
+                      <div className="flex flex-col justify-center apply-text">
                         <h4 className="text-sm sm:text-lg">{item.name}</h4>
                         <h6 className="text-[12px] sm:text-sm">
                           @{item.username}
@@ -156,7 +156,7 @@ const BlockedUsersModal = ({
                       </div>
                     </div>
                   </div>
-                )):(<div className="center-col w-full h-full"><span className="text-text-primary font-poppins">No one&apos;s annoying enough to block… yet.?</span></div>)}
+                )):(<div className="center-col w-full h-full"><span className="apply-text">No one&apos;s annoying enough to block… yet.?</span></div>)}
               </div>
             </ModalBody>
       </ModalContent>

@@ -98,7 +98,7 @@ export default function VisibilityChecksFields() {
       <WarpButton
         className="w-full"
         onClick={onOpen}
-        intent="fw"
+        intent="fullWidth"
         startContent={<WarpIcon name="mdi:show" />}
         endContent={<WarpIcon name="mdi:chevron-right" />}
         position="left"

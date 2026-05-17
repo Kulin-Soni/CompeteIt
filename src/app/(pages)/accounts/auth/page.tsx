@@ -2,8 +2,9 @@
 import PageLayout from "@/components/PageLayout";
 import { Button } from "@/components/ui/Buttons";
 import WarpIcon from "@/components/ui/WarpIcon";
-
+import { Metadata } from "next";
 import Image from "next/image";
+
 const Auth = () => {
   return (
     <PageLayout className="center-col overflow-hidden bg-linear-to-b from-gray-400 to-accent-d">
@@ -18,3 +19,7 @@ const Auth = () => {
 };
 
 export default Auth;
+
+export const metadata: Metadata = {
+  title: "Authentication",
+};

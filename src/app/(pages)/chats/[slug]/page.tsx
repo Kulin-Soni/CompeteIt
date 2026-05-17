@@ -1,4 +1,4 @@
-import { SlugParams } from '@/types/misc'
+import { SlugParams } from '../../../../types/misc'
 import type { Metadata } from 'next';
 import React from 'react'
 const Chats = async ({params}: {params: SlugParams}) => {

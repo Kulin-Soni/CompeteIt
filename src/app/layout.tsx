@@ -21,7 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className={`${poppins.variable} ${alef.variable} dark bg-primary selection:text-white selection:bg-cyan-800 min-w-screen min-h-screen overflow-x-hidden`}>
         <Providers>
-          <div className="h-screen w-screen flex relative">
+          <div className="h-screen w-screen flex flex-row relative">
             <SidebarLayout />
               {children}
           </div>
